@@ -14,12 +14,15 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        var v:String=""
         val Buttonbeginer = findViewById<Button>(R.id.button)
 
         // finding the edit text
         val Buttonintermediate = findViewById<Button> (R.id.button1)
 
         val Buttonadvanced = findViewById<Button> (R.id.button2)
+
+        val Buttondelete = findViewById<Button> (R.id.button4)
 
 
 
@@ -28,24 +31,30 @@ class MainActivity : AppCompatActivity() {
 
 
         Buttonbeginer.setOnClickListener() {
-            val demoRef: DatabaseReference = rootRef.child("VideoStrings").child("Video")
-
+            val demoRef: DatabaseReference = rootRef.child("Trial").child("A")
             val intent = Intent(this, FetchData::class.java)
-
 
             demoRef.addListenerForSingleValueEvent(object : ValueEventListener {
 
                 override fun onDataChange(dataSnapshot: DataSnapshot) {
-                    val value = dataSnapshot.getValue(String::class.java)
-                    var vidid=value.toString();
-                    Log.d("taga","scev"+value)
 
+
+
+                    for (d1 in dataSnapshot.children) {
+                        v = v + d1.getValue().toString();
+
+                        Log.d(v, "onDataChange: ", );
+                    }
+
+                    var vidid=v.toString();
 
                     intent.putExtra("VDID",vidid)
-                    var k="1";
+                    var k="A";
                     intent.putExtra("K",k)
-
+                    v=""
+                    vidid=""
                     startActivity(intent)
+
                 }
 
                 override fun onCancelled(databaseError: DatabaseError) {
@@ -56,20 +65,27 @@ class MainActivity : AppCompatActivity() {
         }
 
         Buttonintermediate.setOnClickListener() {
-            val demoRef: DatabaseReference = rootRef.child("VideoStrings").child("Video1")
+            val demoRef: DatabaseReference = rootRef.child("Trial").child("B")
             val intent = Intent(this, FetchData::class.java)
-
 
             demoRef.addListenerForSingleValueEvent(object : ValueEventListener {
 
                 override fun onDataChange(dataSnapshot: DataSnapshot) {
-                    val value = dataSnapshot.getValue(String::class.java)
-                    var vidid=value.toString();
-                    Log.d("taga","scev"+value)
+
+                    for (d1 in dataSnapshot.children) {
+                        v = v + d1.getValue().toString();
+
+                        Log.d(v, "onDataChange: ", );
+                    }
+
+                    var vidid=v.toString();
+
                     intent.putExtra("VDID",vidid)
-                    var k="2";
+                    var k="B";
                     intent.putExtra("K",k)
+
                     startActivity(intent)
+
                 }
 
                 override fun onCancelled(databaseError: DatabaseError) {
@@ -81,24 +97,27 @@ class MainActivity : AppCompatActivity() {
         }
 
         Buttonadvanced.setOnClickListener() {
-            val demoRef: DatabaseReference = rootRef.child("VideoStrings").child("Video2")
-
+            val demoRef: DatabaseReference = rootRef.child("Trial").child("C")
             val intent = Intent(this, FetchData::class.java)
-
 
             demoRef.addListenerForSingleValueEvent(object : ValueEventListener {
 
                 override fun onDataChange(dataSnapshot: DataSnapshot) {
-                    val value = dataSnapshot.getValue(String::class.java)
-                    var vidid=value.toString();
-                    Log.d("taga","scev"+value)
 
+                    for (d1 in dataSnapshot.children) {
+                         v = v + d1.getValue().toString();
+
+                        Log.d(v, "onDataChange: ", );
+                    }
+
+                    var vidid=v.toString();
 
                     intent.putExtra("VDID",vidid)
-                    var k="3";
+                    var k="C";
                     intent.putExtra("K",k)
 
                     startActivity(intent)
+
                 }
 
                 override fun onCancelled(databaseError: DatabaseError) {
@@ -106,6 +125,11 @@ class MainActivity : AppCompatActivity() {
                             .show()
                 }
             })
+        }
+
+        Buttondelete.setOnClickListener() {
+            val intent = Intent(this, DeleteAct::class.java)
+            startActivity(intent)
         }
 
 

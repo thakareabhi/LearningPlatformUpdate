@@ -6,6 +6,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 
@@ -22,31 +23,33 @@ class FetchData : AppCompatActivity() {
         val Button = findViewById<Button>(R.id.button3)
         val tv2 = findViewById<TextView>(R.id.textView2)
 
+        tv2.setText("")
         tv2.setText(vidid)
 
         val rootRef: DatabaseReference = FirebaseDatabase.getInstance().reference
-
 
 
         Button.setOnClickListener() {
             var str=editText.text.toString();
             if(str.length==11)
             {
-                if(k.equals("1"))
+                if(k.equals("A"))
                 {
-                    val demoRef: DatabaseReference = rootRef.child("VideoStrings").child("Video")
-                    demoRef.setValue(vidid+"////"+str)
+                    val demoRef: DatabaseReference = rootRef.child("Trial").child("A")
+                    //demoRef.setValue(vidid+"////"+str)
+                    demoRef.child(str).setValue(str)
                 }
-                if(k.equals("2"))
+                if(k.equals("B"))
                 {
-
-                    val demoRef: DatabaseReference = rootRef.child("VideoStrings").child("Video1")
-                    demoRef.setValue(vidid+"////"+str)
+                    val demoRef: DatabaseReference = rootRef.child("Trial").child("B")
+                    //demoRef.setValue(vidid+"////"+str)
+                    demoRef.child(str).setValue(str)
                 }
-                if(k.equals("3"))
+                if(k.equals("C"))
                 {
-                    val demoRef: DatabaseReference = rootRef.child("VideoStrings").child("Video2")
-                    demoRef.setValue(vidid+"////"+str)
+                    val demoRef: DatabaseReference = rootRef.child("Trial").child("C")
+                    //demoRef.setValue(vidid+"////"+str)
+                    demoRef.child(str).setValue(str)
                 }
                 Toast.makeText(applicationContext,"Done",Toast.LENGTH_SHORT).show()
                 editText.setText("")
@@ -54,6 +57,7 @@ class FetchData : AppCompatActivity() {
             else
             {
                 Toast.makeText(applicationContext,"Invalid String",Toast.LENGTH_SHORT).show()
+                editText.setText("")
             }
 
         }
