@@ -35,23 +35,23 @@ class FetchData : AppCompatActivity() {
             {
                 if(k.equals("A"))
                 {
-                    val demoRef: DatabaseReference = rootRef.child("Trial").child("A")
-                    //demoRef.setValue(vidid+"////"+str)
-                    demoRef.child(str).setValue(str)
+                    val demoRef: DatabaseReference = rootRef.child("VideoStrings").child("Video")
+                    demoRef.setValue(vidid+"////"+str)
+                    //demoRef.child(str).setValue(str)
                 }
                 if(k.equals("B"))
                 {
-                    val demoRef: DatabaseReference = rootRef.child("Trial").child("B")
-                    //demoRef.setValue(vidid+"////"+str)
-                    demoRef.child(str).setValue(str)
+                    val demoRef: DatabaseReference = rootRef.child("VideoStrings").child("Video1")
+                    demoRef.setValue(vidid+"////"+str)
+                    //demoRef.child(str).setValue(str)
                 }
                 if(k.equals("C"))
                 {
-                    val demoRef: DatabaseReference = rootRef.child("Trial").child("C")
-                    //demoRef.setValue(vidid+"////"+str)
-                    demoRef.child(str).setValue(str)
+                    val demoRef: DatabaseReference = rootRef.child("VideoStrings").child("Video2")
+                    demoRef.setValue(vidid+"////"+str)
+                    //demoRef.child(str).setValue(str)
                 }
-                Toast.makeText(applicationContext,"Done",Toast.LENGTH_SHORT).show()
+                Toast.makeText(applicationContext,"Update Done",Toast.LENGTH_SHORT).show()
                 editText.setText("")
             }
             else

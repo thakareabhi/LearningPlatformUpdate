@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.widget.*
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
-
+//Delete particular
 class DeleteAct : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
 

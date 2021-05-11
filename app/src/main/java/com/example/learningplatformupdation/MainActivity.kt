@@ -22,16 +22,13 @@ class MainActivity : AppCompatActivity() {
 
         val Buttonadvanced = findViewById<Button> (R.id.button2)
 
-        val Buttondelete = findViewById<Button> (R.id.button4)
-
-
-
+        //val Buttondelete = findViewById<Button> (R.id.button4)
 
         val rootRef: DatabaseReference = FirebaseDatabase.getInstance().reference
 
 
         Buttonbeginer.setOnClickListener() {
-            val demoRef: DatabaseReference = rootRef.child("Trial").child("A")
+            val demoRef: DatabaseReference = rootRef.child("VideoStrings").child("Video")
             val intent = Intent(this, FetchData::class.java)
 
             demoRef.addListenerForSingleValueEvent(object : ValueEventListener {
@@ -39,12 +36,7 @@ class MainActivity : AppCompatActivity() {
                 override fun onDataChange(dataSnapshot: DataSnapshot) {
 
 
-
-                    for (d1 in dataSnapshot.children) {
-                        v = v + d1.getValue().toString();
-
-                        Log.d(v, "onDataChange: ", );
-                    }
+                    v = dataSnapshot.getValue().toString();
 
                     var vidid=v.toString();
 
@@ -52,7 +44,6 @@ class MainActivity : AppCompatActivity() {
                     var k="A";
                     intent.putExtra("K",k)
                     v=""
-                    vidid=""
                     startActivity(intent)
 
                 }
@@ -65,25 +56,22 @@ class MainActivity : AppCompatActivity() {
         }
 
         Buttonintermediate.setOnClickListener() {
-            val demoRef: DatabaseReference = rootRef.child("Trial").child("B")
+            val demoRef: DatabaseReference = rootRef.child("VideoStrings").child("Video1")
             val intent = Intent(this, FetchData::class.java)
 
             demoRef.addListenerForSingleValueEvent(object : ValueEventListener {
 
                 override fun onDataChange(dataSnapshot: DataSnapshot) {
 
-                    for (d1 in dataSnapshot.children) {
-                        v = v + d1.getValue().toString();
 
-                        Log.d(v, "onDataChange: ", );
-                    }
+                    v = dataSnapshot.getValue().toString();
 
                     var vidid=v.toString();
 
                     intent.putExtra("VDID",vidid)
                     var k="B";
                     intent.putExtra("K",k)
-
+                    v=""
                     startActivity(intent)
 
                 }
@@ -97,25 +85,22 @@ class MainActivity : AppCompatActivity() {
         }
 
         Buttonadvanced.setOnClickListener() {
-            val demoRef: DatabaseReference = rootRef.child("Trial").child("C")
+            val demoRef: DatabaseReference = rootRef.child("VideoStrings").child("Video2")
             val intent = Intent(this, FetchData::class.java)
 
             demoRef.addListenerForSingleValueEvent(object : ValueEventListener {
 
                 override fun onDataChange(dataSnapshot: DataSnapshot) {
 
-                    for (d1 in dataSnapshot.children) {
-                         v = v + d1.getValue().toString();
 
-                        Log.d(v, "onDataChange: ", );
-                    }
+                    v = dataSnapshot.getValue().toString();
 
                     var vidid=v.toString();
 
                     intent.putExtra("VDID",vidid)
                     var k="C";
                     intent.putExtra("K",k)
-
+                    v=""
                     startActivity(intent)
 
                 }
@@ -127,10 +112,10 @@ class MainActivity : AppCompatActivity() {
             })
         }
 
-        Buttondelete.setOnClickListener() {
+       /* Buttondelete.setOnClickListener() {
             val intent = Intent(this, DeleteAct::class.java)
             startActivity(intent)
-        }
+        }*/
 
 
     }
